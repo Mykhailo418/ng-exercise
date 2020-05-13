@@ -13,9 +13,13 @@ const routes: Routes = [
     component: HomeComponent
   },
   {
-    path: '**',
-    redirectTo: 'landing'
-  }
+    path: 'users-list',
+    loadChildren: () => import('./users/users.module').then((m) => m.UsersModule),
+   },
+   {
+     path: '**',
+     redirectTo: 'landing'
+   },
 ];
 
 @NgModule({

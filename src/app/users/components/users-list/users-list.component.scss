@@ -1,0 +1,26 @@
+.users-list {
+  list-style: none;
+  padding-left: 0;
+
+  .user-info {
+    margin-bottom: 15px;
+
+    .user-link {
+      display: block;
+      line-height: 1.5;
+      padding: 6px 10px;
+      border: 1px solid #dcdcdc;
+      color: black;
+      text-decoration: none;
+
+      &:hover {
+        border-color: #663fb4;
+        transition: all 0.5s ease;
+      }
+    }
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+}

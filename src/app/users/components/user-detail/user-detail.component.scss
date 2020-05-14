@@ -1,0 +1,40 @@
+$btn-color: #57a957;
+
+section {
+  display: flex;
+  justify-content: flex-start;
+}
+
+.back-btn {
+  margin-bottom: 40px;
+  background: $btn-color;
+  border: none;
+  font-size: 1rem;
+  border-radius: 5px;
+  width: 100px;
+  padding: 5px 5px 5px 0;
+  color: white;
+  line-height: 20px;
+  transition: all 0.5s ease;
+
+  &:hover {
+    cursor: pointer;
+    background: darken($btn-color, 10);
+  }
+}
+
+.user-detail-wrapper {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid #dcdcdc;
+  padding: 20px;
+  border-radius: 10px;
+
+  .avatar {
+    border-radius: 50%;
+    max-width: 120px;
+    height: auto;
+    align-self: center;
+    margin-bottom: 20px;
+  }
+}

@@ -1,6 +1,5 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Subject, Observable } from 'rxjs';
-import { takeUntil, distinctUntilChanged } from 'rxjs/operators';
 
 // services
 import { UsersService } from '../../services/users.service';
@@ -14,25 +13,20 @@ import { UserExtended } from '../../models/users.model';
   templateUrl: './users-list.component.html',
   styleUrls: ['./users-list.component.scss']
 })
-export class UsersListComponent implements OnInit, OnDestroy {
+export class UsersListComponent implements OnInit {
+  private page = 1;
   usersList$: Observable<UserExtended[]>
-
-  private ngUnsubscribe = new Subject();
 
   constructor(private usersService: UsersService,
               private usersStorageService: UsersStorageService) { }
 
   ngOnInit(): void {
-    this.usersList$ = this.usersStorageService.observeUsersList()
-      .pipe(
-        distinctUntilChanged(),
-        takeUntil(this.ngUnsubscribe)
-      );
-  }
+    this.usersList$ = this.usersStorageService.observeUsersList();
 
-  ngOnDestroy(): void {
-    this.ngUnsubscribe.next();
-    this.ngUnsubscribe.complete();
+    this.usersService.getUsersList(this.page)
+      .subscribe((usersList: UserExtended[]) => {
+        this.usersStorageService.setUsersList(usersList);
+      });
   }
 
 }

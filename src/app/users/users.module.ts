@@ -11,12 +11,14 @@ import { UsersService } from './services/users.service';
 // components
 import { UsersListComponent } from './components/users-list/users-list.component';
 import { UsersComponent } from './components/users/users.component';
+import { UserDetailComponent } from './components/user-detail/user-detail.component';
 
 
 @NgModule({
   declarations: [
     UsersListComponent,
-    UsersComponent
+    UsersComponent,
+    UserDetailComponent
   ],
   providers: [
     UsersService

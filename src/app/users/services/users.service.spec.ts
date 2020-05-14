@@ -5,7 +5,20 @@ import { HttpClientTestingModule, HttpTestingController } from '@angular/common/
 import { UsersService } from './users.service';
 
 // models
-import { UsersListResponse, UserExtended, UserFromReqres } from '../models/users.model';
+import {
+  UsersListResponse,
+  UserExtended,
+  UserFromReqres,
+  UserDetailResponse
+} from '../models/users.model'
+
+const mockUser = <UserFromReqres>{
+  "id": 6,
+  "email": "tracey.ramos@reqres.in",
+  "first_name": "Tracey",
+  "last_name": "Ramos",
+  "avatar": "avatar"
+};
 
 describe('UsersService', () => {
   let service: UsersService;
@@ -27,24 +40,18 @@ describe('UsersService', () => {
     expect(service).toBeTruthy();
   });
 
-  it('should get user lists via url', () => {
+  it('should get users list via url', () => {
     const page = 1;
-    const mockUser = <UserFromReqres>{
-      "id": 6,
-      "email": "tracey.ramos@reqres.in",
-      "first_name": "Tracey",
-      "last_name": "Ramos",
-      "avatar": "avatar"
-    };
     const mockUsersListResponse = <UsersListResponse>{data: [mockUser]};
 
     service.getUsersList(page)
-      .subscribe((user: UserExtended[]) => {
-        expect(user[0]).toEqual({
+      .subscribe((users: UserExtended[]) => {
+        expect(users[0]).toEqual({
           id: mockUser.id,
           email: mockUser.email,
           firstName: mockUser.first_name,
           lastName: mockUser.last_name,
+          avatar: mockUser.avatar,
         });
       });
 
@@ -53,5 +60,27 @@ describe('UsersService', () => {
     expect(req.request.method).toEqual('GET');
 
     req.flush(mockUsersListResponse);
+  });
+
+  it('should get user by id via url', () => {
+    const id = 6;
+    const mockUserDetailResponse = <UserDetailResponse>{data: mockUser};
+
+    service.getUserById(id)
+      .subscribe((user: UserExtended) => {
+        expect(user).toEqual({
+          id: mockUser.id,
+          email: mockUser.email,
+          firstName: mockUser.first_name,
+          lastName: mockUser.last_name,
+          avatar: mockUser.avatar,
+        });
+      });
+
+    const req = httpTestingController.expectOne(`https://reqres.in/api/users/${id}`);
+
+    expect(req.request.method).toEqual('GET');
+
+    req.flush(mockUserDetailResponse);
   });
 });

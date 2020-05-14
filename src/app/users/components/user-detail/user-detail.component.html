@@ -1,0 +1,30 @@
+<h1>User Detail</h1>
+<button  class="back-btn" (click)="back()">&lArr; Back</button>
+<section *ngIf="!loading; else loadingTemplate">
+  <div class="user-detail-wrapper" *ngIf="usersDetail?.id; else noUserDataTemplate">
+    <img class="avatar" [attr.src]="usersDetail.avatar" [attr.alt]="usersDetail.firstName" />
+    <table >
+      <tbody>
+        <tr>
+          <td>First Name:</td>
+          <td>{{usersDetail.firstName}}</td>
+        <tr>
+        <tr>
+          <td>Last Name:</td>
+          <td>{{usersDetail.lastName}}</td>
+        <tr>
+        <tr>
+          <td>Email:</td>
+          <td><a [attr.href]="'mailto:' + usersDetail.email">{{usersDetail.email}}</a></td>
+        <tr>
+      </tbody>
+    </table>
+  </div>
+  <ng-template #noUserDataTemplate>
+    <p>There are no user with ID {{userId}}</p>
+  </ng-template>
+</section>
+
+<ng-template #loadingTemplate>
+  <p>Loading...</p>
+</ng-template>

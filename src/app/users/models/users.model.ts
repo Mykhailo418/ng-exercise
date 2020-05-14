@@ -13,6 +13,7 @@ export interface UserExtended extends User {
   "lastName": string;
   "id": number;
   "email": string;
+  "avatar": string;
 }
 
 export interface UsersListResponse {
@@ -21,4 +22,8 @@ export interface UsersListResponse {
   "total": number;
   "total_pages": number;
   "data": UserFromReqres[];
+}
+
+export interface UserDetailResponse {
+  "data": UserFromReqres;
 }

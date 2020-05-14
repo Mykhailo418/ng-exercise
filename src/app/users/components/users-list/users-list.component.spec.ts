@@ -8,12 +8,16 @@ import { UsersService } from '../../services/users.service';
 import { UsersStorageService } from '../../services/users-storage.service';
 
 class MockUsersService {
-
+  getUsersList() {
+    return of([]);
+  }
 }
 
 class MockUsersStorageService {
   observeUsersList() {
     return of([])
+  }
+  setUsersList() {
   }
 }
 

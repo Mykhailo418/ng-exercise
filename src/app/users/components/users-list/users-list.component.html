@@ -4,9 +4,9 @@
   <ul class="users-list" *ngIf="list.length > 0; else noUsersTemplate">
     <li class="user-info" *ngFor="let user of list">
       <a [routerLink]="[user.id]" class="user-link">
-        <strong>First Name:</strong> {{user.firstName}}
+        First Name: <strong>{{user.firstName}}</strong>
         <br />
-        <strong>Last Name:</strong> {{user.lastName}}
+        Last Name: <strong>{{user.lastName}}</strong>
       </a>
     </li>
   </ul>

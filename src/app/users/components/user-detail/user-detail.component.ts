@@ -1,7 +1,7 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { Subject, Observable, of } from 'rxjs';
-import { tap, takeUntil, map, switchMap } from 'rxjs/operators';
+import { takeUntil, map, switchMap } from 'rxjs/operators';
 
 // services
 import { UsersService } from '../../services/users.service';

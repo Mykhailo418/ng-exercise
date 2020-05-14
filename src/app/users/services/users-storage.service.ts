@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
-import { map, filter, delay, tap } from 'rxjs/operators';
+import { map, filter } from 'rxjs/operators';
 
 // models
 import { UserExtended } from '../models/users.model';
